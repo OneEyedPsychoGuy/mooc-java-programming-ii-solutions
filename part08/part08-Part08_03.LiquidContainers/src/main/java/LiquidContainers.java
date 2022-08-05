@@ -29,6 +29,18 @@ public class LiquidContainers {
                         first = 100;
                     }
                     break;
+                case "move":
+                    if(first < amount) {
+                        amount = first;
+                    }
+
+                    first -= amount;
+                    second += amount;
+
+                    if(second > 100) {
+                        second = 100;
+                    }
+                    break;
                 default:
                     System.out.println("Unknown command");
             }
