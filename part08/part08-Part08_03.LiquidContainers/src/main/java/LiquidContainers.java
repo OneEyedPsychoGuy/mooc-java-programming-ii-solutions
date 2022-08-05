@@ -41,6 +41,12 @@ public class LiquidContainers {
                         second = 100;
                     }
                     break;
+                case "remove":
+                    second -= amount;
+                    if(second < 0) {
+                        second = 0;
+                    }
+                    break;
                 default:
                     System.out.println("Unknown command");
             }
