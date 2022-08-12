@@ -1,8 +1,8 @@
-import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class VehicleRegistry {
-    private Map<LicensePlate, String> licensePlates;
+    private HashMap<LicensePlate, String> licensePlates;
 
     public VehicleRegistry() {
         this.licensePlates = new HashMap<>();
@@ -26,5 +26,22 @@ public class VehicleRegistry {
             return true;
         }
         return false;
+    }
+
+    public void printLicensePlates() {
+        for(LicensePlate licensePlate : this.licensePlates.keySet()) {
+            System.out.println(licensePlate);
+        }
+    }
+
+    public void printOwners() {
+        ArrayList<String> owners = new ArrayList<>();
+
+        for(String owner : this.licensePlates.values()) {
+            if(!owners.contains(owner)) {
+                System.out.println(owner);
+                owners.add(owner);
+            }
+        }
     }
 }
