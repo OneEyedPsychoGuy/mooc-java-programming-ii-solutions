@@ -20,15 +20,12 @@ public class StorageFacility {
     }
 
     public void remove(String unit, String item) {
-        List<String> items = this.units.get(unit);
-
-        if(items == null) {
+        if(!this.units.containsKey(unit)) {
             return;
         }
 
-        items.remove(item);
-
-        if(items.isEmpty()) {
+        this.units.get(unit).remove(item);
+        if(this.units.get(unit).isEmpty()) {
             this.units.remove(unit);
         }
     }
