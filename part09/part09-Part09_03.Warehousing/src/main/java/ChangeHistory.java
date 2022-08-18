@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ChangeHistory {
-    private List<Double> history;
+    private List<Double> values;
 
     public ChangeHistory() {
-        this.history = new ArrayList<>();
+        this.values = new ArrayList<>();
     }
 
     public void add(double status) {
-        this.history.add(status);
+        this.values.add(status);
     }
 
     public void clear() {
-        this.history.clear();
+        this.values.clear();
     }
 
     public double maxValue() {
         double max = Double.MIN_VALUE;
 
-        for(double value : this.history) {
+        for(double value : this.values) {
             if(value > max) max = value;
         }
 
@@ -32,7 +32,7 @@ public class ChangeHistory {
     public double minValue() {
         double min = Double.MAX_VALUE;
 
-        for(double value : this.history) {
+        for(double value : this.values) {
             if(value < min) min = value;
         }
 
@@ -43,15 +43,15 @@ public class ChangeHistory {
     public double average() {
         double sum = 0;
 
-        for(double value : this.history) {
+        for(double value : this.values) {
             sum += value;
         }
 
-        return sum / this.history.size();
+        return sum / this.values.size();
     }
 
     @Override
     public String toString() {
-        return this.history.toString();
+        return this.values.toString();
     }
 }
