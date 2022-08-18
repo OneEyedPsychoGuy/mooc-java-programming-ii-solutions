@@ -1,7 +1,5 @@
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ChangeHistory {
     private List<Double> values;
@@ -19,30 +17,31 @@ public class ChangeHistory {
     }
 
     public double maxValue() {
-        double max = Double.MIN_VALUE;
+        if(this.values.isEmpty()) return 0;
 
+        double max = this.values.get(0);
         for(double value : this.values) {
             if(value > max) max = value;
         }
 
-        if(max == Double.MIN_VALUE) return 0;
         return max;
     }
 
     public double minValue() {
-        double min = Double.MAX_VALUE;
+        if(this.values.isEmpty()) return 0;
 
+        double min = this.values.get(0);
         for(double value : this.values) {
             if(value < min) min = value;
         }
 
-        if(min == Double.MAX_VALUE) return 0;
         return min;
     }
 
     public double average() {
-        double sum = 0;
+        if(this.values.isEmpty()) return 0;
 
+        double sum = 0;
         for(double value : this.values) {
             sum += value;
         }
