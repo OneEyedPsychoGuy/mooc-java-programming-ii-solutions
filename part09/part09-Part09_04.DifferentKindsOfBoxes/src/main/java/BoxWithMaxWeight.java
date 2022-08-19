@@ -4,21 +4,25 @@ import java.util.ArrayList;
 public class BoxWithMaxWeight extends Box {
     private List<Item> items;
     private int capacity;
-    private int weight;
 
     public BoxWithMaxWeight(int capacity) {
         this.items = new ArrayList<>();
         this.capacity = capacity;
-        this.weight = 0;
+    }
+
+    private int getCurrentWeight() {
+        int currentWeight = 0;
+        for(Item item : this.items) {
+            currentWeight += item.getWeight();
+        }
+        return currentWeight;
     }
 
     @Override
     public void add(Item item) {
-        int newWeight = this.weight + item.getWeight();
-
-        if(newWeight <= capacity) {
+        int newWeight = item.getWeight() + this.getCurrentWeight();
+        if(newWeight <= this.capacity) {
             this.items.add(item);
-            this.weight = newWeight;
         }
     }
 
