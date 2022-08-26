@@ -9,6 +9,13 @@ public class ShoppingCart {
     }
 
     public void add(String product, int price) {
+        for(Item item : this.items) {
+            if(item.getName().equals(product)) {
+                item.increaseQuantity();
+                return;
+            }
+        }
+
         this.items.add(new Item(product, 1, price));
     }
 

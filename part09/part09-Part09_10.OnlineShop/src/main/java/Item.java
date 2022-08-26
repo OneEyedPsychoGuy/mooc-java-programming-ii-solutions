@@ -9,6 +9,10 @@ public class Item {
         this.price = price;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public int price() {
         return this.quantity * this.price;
     }
