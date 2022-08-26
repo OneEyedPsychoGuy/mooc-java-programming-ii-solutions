@@ -19,4 +19,8 @@ public class ShoppingCart {
         }
         return price;
     }
+
+    public void print() {
+        this.items.forEach(System.out::println);
+    }
 }
