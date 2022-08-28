@@ -1,4 +1,4 @@
-public class Cat extends Animal {
+public class Cat extends Animal implements NoiseCapable {
     public Cat() {
         super("Cat");
     }
@@ -9,5 +9,10 @@ public class Cat extends Animal {
 
     public void purr() {
         System.out.println(this.getName() + " purrs");
+    }
+
+    @Override
+    public void makeNoise() {
+        this.purr();
     }
 }
