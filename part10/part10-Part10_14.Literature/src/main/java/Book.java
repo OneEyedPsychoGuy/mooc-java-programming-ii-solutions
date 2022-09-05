@@ -7,6 +7,10 @@ public class Book {
         this.recommendedAge = recommendedAge;
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
     public int getRecommnededAge() {
         return this.recommendedAge;
     }

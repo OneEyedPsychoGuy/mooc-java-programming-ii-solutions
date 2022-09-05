@@ -24,7 +24,7 @@ public class MainProgram {
 
         System.out.println("\n" + books.size() + " books in total.\n");
         System.out.println("Books:");
-        Collections.sort(books, Comparator.comparing(Book::getRecommnededAge));
+        Collections.sort(books, Comparator.comparing(Book::getRecommnededAge).thenComparing(Book::getTitle));
         books.forEach(System.out::println);
 
         keyboard.close();
