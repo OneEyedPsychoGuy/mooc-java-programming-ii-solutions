@@ -7,6 +7,10 @@ public class Book {
         this.recommendedAge = recommendedAge;
     }
 
+    public int getRecommnededAge() {
+        return this.recommendedAge;
+    }
+
     @Override
     public String toString() {
         return this.title + " (recommended for " + this.recommendedAge + " year-olds or older)";
