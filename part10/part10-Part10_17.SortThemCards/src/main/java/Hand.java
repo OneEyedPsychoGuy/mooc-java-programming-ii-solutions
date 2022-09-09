@@ -21,6 +21,10 @@ public class Hand implements Comparable<Hand> {
         Collections.sort(this.cards);
     }
 
+    public void sortBySuit() {
+        Collections.sort(this.cards, new BySuitInValueOrder());
+    }
+
     @Override
     public int compareTo(Hand hand) {
         int thisHandValue = this.cards.stream().mapToInt(card -> card.getValue()).reduce(0, (sum, value) -> sum + value);
