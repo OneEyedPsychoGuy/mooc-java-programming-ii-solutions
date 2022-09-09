@@ -1,28 +1,26 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Main {
     public static void main(String[] args) {
-        Hand hand1 = new Hand();
+        ArrayList<Card> cards = new ArrayList<>();
 
-        hand1.add(new Card(2, Suit.DIAMOND));
-        hand1.add(new Card(14, Suit.SPADE));
-        hand1.add(new Card(12, Suit.HEART));
-        hand1.add(new Card(2, Suit.SPADE));
+        cards.add(new Card(3, Suit.SPADE));
+        cards.add(new Card(2, Suit.DIAMOND));
+        cards.add(new Card(14, Suit.SPADE));
+        cards.add(new Card(12, Suit.HEART));
+        cards.add(new Card(2, Suit.SPADE));
 
-        Hand hand2 = new Hand();
+        SortBySuit sortBySuitSorter = new SortBySuit();
+        Collections.sort(cards, sortBySuitSorter);
 
-        hand2.add(new Card(11, Suit.DIAMOND));
-        hand2.add(new Card(11, Suit.SPADE));
-        hand2.add(new Card(11, Suit.HEART));
+        cards.stream().forEach(c -> System.out.println(c));
 
-        int comparison = hand1.compareTo(hand2);
+        System.out.println();
 
-        if (comparison < 0) {
-            System.out.println("better hand is");
-            hand2.print();
-        } else if (comparison > 0){
-            System.out.println("better hand is");
-            hand1.print();
-        } else {
-            System.out.println("hands are equal");
-        }
+        BySuitInValueOrder sortBySuitInValueOrder = new BySuitInValueOrder();
+        Collections.sort(cards, sortBySuitInValueOrder);
+
+        cards.stream().forEach(c -> System.out.println(c));
     }
 }
