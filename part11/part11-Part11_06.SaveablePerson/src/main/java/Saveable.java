@@ -1,5 +1,5 @@
 public interface Saveable {
-    public void save();
-    public void delete();
-    public void load(String address);
+    void save();
+    void delete();
+    void load(String address);
 }
