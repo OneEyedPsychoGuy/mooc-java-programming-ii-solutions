@@ -5,7 +5,7 @@ public class Person {
     private int age;
 
     public Person(String name, int age) {
-        if(name.isEmpty() || name == null || name.length() > 40 || age < 0 || age > 120) {
+        if(name == null || name.isEmpty() || name.length() > 40 || age < 0 || age > 120) {
             throw new IllegalArgumentException("Invalid name or age!");
         }
 
