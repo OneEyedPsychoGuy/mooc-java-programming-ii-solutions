@@ -1,17 +1,15 @@
 package application;
 
 public class StandardSensor implements Sensor {
-    private boolean running;
-    private int number;
+    private int reading;
 
-    public StandardSensor(int number) {
-        this.running = true;
-        this.number = number;
+    public StandardSensor(int reading) {
+        this.reading = reading;
     }
 
     @Override
     public boolean isOn() {
-        return this.running;
+        return true;
     }
 
     @Override
@@ -26,6 +24,6 @@ public class StandardSensor implements Sensor {
             throw new IllegalStateException("Cannot perform read() method when sensor is off!");
         }
 
-        return this.number;
+        return this.reading;
     }
 }

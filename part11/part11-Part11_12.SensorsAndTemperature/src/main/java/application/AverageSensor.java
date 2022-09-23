@@ -5,13 +5,19 @@ import java.util.ArrayList;
 
 public class AverageSensor implements Sensor {
     private List<Sensor> sensors;
+    private List<Integer> readings;
 
     public AverageSensor() {
         this.sensors = new ArrayList<>();
+        this.readings = new ArrayList<>();
     }
 
     public void addSensor(Sensor sensor) {
         this.sensors.add(sensor);
+    }
+
+    public List<Integer> readings() {
+        return this.readings;
     }
 
     @Override
@@ -40,6 +46,8 @@ public class AverageSensor implements Sensor {
             throw new IllegalStateException();
         }
 
-        return (int) this.sensors.stream().mapToInt(s -> s.read()).average().getAsDouble();
+        int average = (int) this.sensors.stream().mapToInt(s -> s.read()).average().getAsDouble();
+        this.readings.add(average);
+        return average;
     }
 }
