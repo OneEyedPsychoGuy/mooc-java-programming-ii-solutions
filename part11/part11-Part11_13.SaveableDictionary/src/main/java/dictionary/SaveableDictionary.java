@@ -18,4 +18,14 @@ public class SaveableDictionary {
     public String translate(String word) {
         return this.translations.get(word);
     }
+
+    public void delete(String word) {
+        if(!this.translations.containsKey(word)) {
+            return;
+        }
+
+        String translation = this.translations.get(word);
+        this.translations.remove(word);
+        this.translations.remove(translation);
+    }
 }
