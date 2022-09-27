@@ -3,12 +3,19 @@ package dictionary;
 import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class SaveableDictionary {
     private Map<String, String> translations;
     private String file;
+
+    public SaveableDictionary() {
+        this("");
+    }
 
     public SaveableDictionary(String file) {
         this.translations = new HashMap<>();
@@ -42,7 +49,27 @@ public class SaveableDictionary {
                 this.add(data[0], data[1]);
             }
             return true;
-        } catch(IOException e) {
+        } catch(FileNotFoundException e) {
+            return false;
+        }
+    }
+
+    public boolean save() {
+        try(PrintWriter fileWriter = new PrintWriter(this.file)) {
+            List<String> words = new ArrayList<>();
+
+            for(String word : this.translations.keySet()) {
+                if(!words.contains(word)) {
+                    String translation = this.translations.get(word);
+
+                    words.add(word);
+                    words.add(translation);
+                    fileWriter.println(word + ":" + translation);
+                }
+            }
+
+            return true;
+        } catch(FileNotFoundException e) {
             return false;
         }
     }
