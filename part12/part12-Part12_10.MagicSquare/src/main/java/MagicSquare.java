@@ -40,7 +40,21 @@ public class MagicSquare {
     }
 
     public ArrayList<Integer> sumsOfDiagonals() {
-        return new ArrayList<>();
+        ArrayList<Integer> sumsOfDiagonals = new ArrayList<>();
+        int sumOfForwardDiagonal = 0;
+        int sumOfBackwareDiagonal = 0;
+
+        for(int i = 0; i < this.square.length; i++) {
+            sumOfForwardDiagonal += this.square[i][i];
+        }
+        sumsOfDiagonals.add(sumOfForwardDiagonal);
+
+        for(int i = 0; i < this.square.length; i++) {
+            sumOfBackwareDiagonal += this.square[i][this.square.length - 1 - i];
+        }
+        sumsOfDiagonals.add(sumOfBackwareDiagonal);
+
+        return sumsOfDiagonals;
     }
 
     public boolean isMagicSquare() {
