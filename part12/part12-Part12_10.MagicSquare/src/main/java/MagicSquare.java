@@ -12,21 +12,31 @@ public class MagicSquare {
     }
 
     public ArrayList<Integer> sumsOfRows() {
-        ArrayList<Integer> sumOfRows = new ArrayList<>();
+        ArrayList<Integer> sumsOfRows = new ArrayList<>();
 
         for(int row = 0; row < this.square.length; row++) {
             int sumOfRow = 0;
             for(int col = 0; col < this.square[row].length; col++) {
                 sumOfRow += this.square[row][col];
             }
-            sumOfRows.add(sumOfRow);
+            sumsOfRows.add(sumOfRow);
         }
 
-        return sumOfRows;
+        return sumsOfRows;
     }
 
     public ArrayList<Integer> sumsOfColumns() {
-        return new ArrayList<>();
+        ArrayList<Integer> sumsOfColumns = new ArrayList<>();
+
+        for(int col = 0; col < this.square.length; col++) {
+            int sumOfColumn = 0;
+            for(int row = 0; row < this.square[col].length; row++) {
+                sumOfColumn += this.square[row][col];
+            }
+            sumsOfColumns.add(sumOfColumn);
+        }
+
+        return sumsOfColumns;
     }
 
     public ArrayList<Integer> sumsOfDiagonals() {
