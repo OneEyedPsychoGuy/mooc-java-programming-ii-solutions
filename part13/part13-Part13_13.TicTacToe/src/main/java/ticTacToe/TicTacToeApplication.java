@@ -1,6 +1,8 @@
 package ticTacToe;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,14 +21,31 @@ public class TicTacToeApplication extends Application {
 
     @Override
     public void start(Stage window) {
-        Label turn = new Label("Turn: X");
+        final Label turn = new Label("Turn: X");
         turn.setFont(Font.font(FONT_FAMILY, FontWeight.BOLD, 40));
 
-        GridPane board = new GridPane();
+        final GridPane board = new GridPane();
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                Button btn = new Button(" ");
+                final Button btn = new Button(" ");
                 btn.setFont(Font.font(FONT_FAMILY, FontWeight.BOLD, 40));
+
+                btn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if(btn.getText().equals(" ")) {
+                            String letter = turn.getText().split(" ")[1];
+                            btn.setText(letter);
+
+                            if(letter.equals("O")) {
+                                turn.setText("Turn: X");
+                            } else {
+                                turn.setText("Turn: O");
+                            }
+                        }
+                    }
+                });
+
                 board.add(btn, i, j);
             }
         }
