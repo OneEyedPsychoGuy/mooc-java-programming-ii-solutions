@@ -21,38 +21,52 @@ public class TicTacToeApplication extends Application {
 
     @Override
     public void start(Stage window) {
+        final TicTacToeBoard board = new TicTacToeBoard();
+
         final Label turn = new Label("Turn: X");
         turn.setFont(Font.font(FONT_FAMILY, FontWeight.BOLD, 40));
 
-        final GridPane board = new GridPane();
+        final GridPane grid = new GridPane();
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
                 final Button btn = new Button(" ");
                 btn.setFont(Font.font(FONT_FAMILY, FontWeight.BOLD, 40));
 
+                final int row = i;
+                final int col = j;
+
                 btn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        if(btn.getText().equals(" ")) {
-                            String letter = turn.getText().split(" ")[1];
-                            btn.setText(letter);
+                        if(board.isEndGame()) {
+                            return;
+                        }
 
-                            if(letter.equals("O")) {
+                        if(btn.getText().equals(" ")) {
+                            char letter = turn.getText().split(" ")[1].charAt(0);
+                            btn.setText(letter + "");
+                            board.add(letter, row, col);
+
+                            if(letter == 'O') {
                                 turn.setText("Turn: X");
                             } else {
                                 turn.setText("Turn: O");
                             }
                         }
+
+                        if(board.isEndGame()) {
+                            turn.setText("The end!");
+                        }
                     }
                 });
 
-                board.add(btn, i, j);
+                grid.add(btn, row, col);
             }
         }
 
         BorderPane layout = new BorderPane();
         layout.setTop(turn);
-        layout.setCenter(board);
+        layout.setCenter(grid);
 
         window.setScene(new Scene(layout));
         window.show();
