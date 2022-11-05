@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
@@ -19,6 +20,15 @@ public class SavingsCalculatorApplication extends Application {
 
     @Override
     public void start(Stage window) {
+        NumberAxis xAxis = new NumberAxis(0, 30, 1);
+        NumberAxis yAxis = new NumberAxis(0, 27500, 2500);
+
+        xAxis.setLabel("Years");
+        yAxis.setLabel("Amount ($)");
+
+        final LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+        lineChart.setTitle("Savings Calculator");
+
         Label monthlySavingsLabel = new Label("Monthly savings");
         Slider monthlySavingsSlider = new Slider(25, 250, 25);
         final Label monthlySavingsValue = new Label("25.00");
@@ -30,6 +40,13 @@ public class SavingsCalculatorApplication extends Application {
             public void changed(ObservableValue <? extends Number> observable, Number oldValue, Number newValue)
             {
                 monthlySavingsValue.setText(String.format("%.2f", newValue));
+
+                XYChart.Series<Number, Number> savings = new XYChart.Series<Number, Number>();
+                for(int year = 0; year <= 30; year++) {
+                    savings.getData().add(new XYChart.Data<Number, Number>(year, year * (newValue.doubleValue() * 12)));
+                }
+                lineChart.getData().clear();
+                lineChart.getData().add(savings);
             }
         });
 
@@ -58,15 +75,6 @@ public class SavingsCalculatorApplication extends Application {
         yearlyInterestRateLayout.setRight(yearlyInterestRateValue);
 
         VBox sliders = new VBox(monthlySavingsLayout, yearlyInterestRateLayout);
-
-        NumberAxis xAxis = new NumberAxis(0, 30, 1);
-        NumberAxis yAxis = new NumberAxis(0, 27500, 2500);
-
-        xAxis.setLabel("Years");
-        yAxis.setLabel("Amount ($)");
-
-        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
-        lineChart.setTitle("Savings Calculator");
 
         BorderPane mainLayout = new BorderPane();
         mainLayout.setTop(sliders);
