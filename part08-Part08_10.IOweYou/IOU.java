@@ -1,17 +1,17 @@
 import java.util.HashMap;
 
 public class IOU {
-    private HashMap<String, Double> iou;
+    private HashMap<String, Double> debt;
 
     public IOU() {
-        this.iou = new HashMap<>();
+        this.debt = new HashMap<>();
     }
 
     public void setSum(String to, double amount) {
-        this.iou.put(to, amount);
+        this.debt.put(to, amount);
     }
 
     public double howMuchDoIOweTo(String to) {
-        return this.iou.getOrDefault(to, 0.0);
+        return this.debt.getOrDefault(to, 0.0);
     }
 }
