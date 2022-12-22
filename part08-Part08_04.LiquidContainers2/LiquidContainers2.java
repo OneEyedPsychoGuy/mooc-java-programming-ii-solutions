@@ -2,16 +2,16 @@ import java.util.Scanner;
 
 public class LiquidContainers2 {
     public static void main(String[] args) {
-        Scanner keyboard = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         Container first = new Container();
         Container second = new Container();
 
-        while (true) {
+        while(true) {
             System.out.println("First: " + first);
             System.out.println("Second: " + second);
 
-            String input = keyboard.nextLine();
-            if (input.equals("quit")) {
+            String input = scanner.nextLine();
+            if(input.equals("quit")) {
                 break;
             }
 
@@ -30,6 +30,7 @@ public class LiquidContainers2 {
 
                     first.remove(amount);
                     second.add(amount);
+
                     break;
                 case "remove":
                     second.remove(amount);
@@ -40,7 +41,6 @@ public class LiquidContainers2 {
 
             System.out.println();
         }
-
-        keyboard.close();
+        scanner.close();
     }
 }

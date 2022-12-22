@@ -1,7 +1,4 @@
 public class Container {
-    private static final int MIN = 0;
-    private static final int MAX = 100;
-
     private int amount;
 
     public Container() {
@@ -13,31 +10,29 @@ public class Container {
     }
 
     public void add(int amount) {
-        if(amount < MIN) {
+        if(amount < 0) {
             return;
         }
 
         this.amount += amount;
-
-        if(this.amount > MAX) {
+        if(this.amount > 100) {
             this.amount = 100;
         }
     }
 
     public void remove(int amount) {
-        if(amount < MIN) {
+        if(amount < 0) {
             return;
         }
 
         this.amount -= amount;
-
-        if(this.amount < MIN) {
+        if(this.amount < 0) {
             this.amount = 0;
         }
     }
 
     @Override
     public String toString() {
-        return this.amount + "/" + MAX;
+        return this.amount + "/100";
     }
 }
