@@ -10,13 +10,13 @@ public class StorageFacility {
         this.units = new HashMap<>();
     }
 
+    public ArrayList<String> contents(String unit) {
+        return (ArrayList<String>) this.units.getOrDefault(unit, new ArrayList<>());
+    }
+
     public void add(String unit, String item) {
         this.units.putIfAbsent(unit, new ArrayList<>());
         this.units.get(unit).add(item);
-    }
-
-    public ArrayList<String> contents(String unit) {
-        return (ArrayList<String>) this.units.getOrDefault(unit, new ArrayList<>());
     }
 
     public void remove(String unit, String item) {
@@ -38,7 +38,6 @@ public class StorageFacility {
                 units.add(unit);
             }
         }
-
         return units;
     }
 }
