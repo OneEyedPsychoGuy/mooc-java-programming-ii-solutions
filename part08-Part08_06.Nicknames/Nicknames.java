@@ -1,8 +1,9 @@
+import java.util.Map;
 import java.util.HashMap;
 
 public class Nicknames {
     public static void main(String[] args) {
-        HashMap<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
         map.put("matthew", "matt");
         map.put("michael", "mix");
