@@ -1,3 +1,3 @@
 public interface NoiseCapable {
-    public void makeNoise();
+    void makeNoise();
 }
