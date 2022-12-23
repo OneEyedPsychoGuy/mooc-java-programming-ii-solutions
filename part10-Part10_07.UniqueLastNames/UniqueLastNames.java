@@ -5,40 +5,30 @@ import java.util.Scanner;
 public class UniqueLastNames {
     public static void main(String[] args) {
         List<Person> persons = new ArrayList<>();
-        Scanner keyboard = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        while(true) {
             System.out.println("Continue personal information input? \"quit\" ends:");
-            String continueQ = "quit";
-            if(keyboard.hasNextLine()){
-                continueQ = keyboard.nextLine();
-            }
-
-            if (continueQ.equals("quit")) {
-                break;
-            }
+            String answer = "quit";
+            if(scanner.hasNextLine()) answer = scanner.nextLine();
+            if(answer.equals("quit")) break;
 
             System.out.print("Input first name: ");
-            String firstName = "NaN";
-            if(keyboard.hasNextLine()) {
-                firstName = keyboard.nextLine();
-            }
+            String firstName = "";
+            if(scanner.hasNextLine()) firstName = scanner.nextLine();
 
             System.out.print("Input last name: ");
-            String lastName = "NaN";
-            if(keyboard.hasNextLine()) {
-                lastName = keyboard.nextLine();
-            }
+            String lastName = "";
+            if(scanner.hasNextLine()) lastName = scanner.nextLine();
 
             System.out.print("Input the year of birth: ");
             int birthYear = 0;
-            if(keyboard.hasNextLine()) {
-                birthYear = Integer.valueOf(keyboard.nextLine());
-            }
+            if(scanner.hasNextLine()) birthYear = Integer.valueOf(scanner.nextLine());
 
             persons.add(new Person(firstName, lastName, birthYear));
-            System.out.println("");
+            System.out.println();
         }
+        scanner.close();
         
         System.out.println("Unique last names in alphabetical order:");
         persons.stream()
@@ -46,7 +36,5 @@ public class UniqueLastNames {
             .distinct()
             .sorted()
             .forEach(System.out::println);
-
-        keyboard.close();
     }
 }
