@@ -11,19 +11,19 @@ public class Box implements Packable {
     }
 
     public void add(Packable item) {
-        double totalWeight = this.weight() + item.weight();
-        if(totalWeight <= capacity) {
+        double weight = this.weight() + item.weight();
+        if(weight <= capacity) {
             this.items.add(item);
         }
     }
 
     @Override
     public double weight() {
-        double totalWeight = 0;
+        double weight = 0;
         for(Packable item : this.items) {
-            totalWeight += item.weight();
+            weight += item.weight();
         }
-        return totalWeight;
+        return weight;
     }
 
     @Override
