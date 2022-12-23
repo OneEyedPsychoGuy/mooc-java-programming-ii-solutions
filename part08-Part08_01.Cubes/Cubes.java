@@ -6,9 +6,7 @@ public class Cubes {
         
         while(true) {
             String input = scanner.nextLine();
-            if(input.equals("end")) {
-                break;
-            }
+            if(input.equals("end")) break;
 
             int num = Integer.valueOf(input);
             System.out.println(num * num * num);
