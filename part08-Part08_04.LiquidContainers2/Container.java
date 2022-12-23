@@ -10,9 +10,7 @@ public class Container {
     }
 
     public void add(int amount) {
-        if(amount < 0) {
-            return;
-        }
+        if(amount < 0) return;
 
         this.amount += amount;
         if(this.amount > 100) {
@@ -21,9 +19,7 @@ public class Container {
     }
 
     public void remove(int amount) {
-        if(amount < 0) {
-            return;
-        }
+        if(amount < 0) return;
 
         this.amount -= amount;
         if(this.amount < 0) {

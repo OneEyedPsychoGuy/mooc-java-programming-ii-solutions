@@ -11,9 +11,7 @@ public class LiquidContainers2 {
             System.out.println("Second: " + second);
 
             String input = scanner.nextLine();
-            if(input.equals("quit")) {
-                break;
-            }
+            if(input.equals("quit")) break;
 
             String[] parts = input.split(" ");
             String command = parts[0];
