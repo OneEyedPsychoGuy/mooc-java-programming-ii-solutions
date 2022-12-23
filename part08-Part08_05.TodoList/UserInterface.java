@@ -15,9 +15,7 @@ public class UserInterface {
         while(true) {
             System.out.print("Command: ");
             command = this.scanner.nextLine();
-            if(command.equals("stop")) {
-                break;
-            }
+            if(command.equals("stop")) break;
 
             this.processCommand(command);
         }
