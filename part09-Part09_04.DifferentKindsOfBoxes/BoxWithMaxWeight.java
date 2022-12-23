@@ -11,17 +11,16 @@ public class BoxWithMaxWeight extends Box {
     }
 
     private int getCurrentWeight() {
-        int currentWeight = 0;
+        int weight = 0;
         for(Item item : this.items) {
-            currentWeight += item.getWeight();
+            weight += item.getWeight();
         }
-        return currentWeight;
+        return weight;
     }
 
     @Override
     public void add(Item item) {
-        int newWeight = item.getWeight() + this.getCurrentWeight();
-        if(newWeight <= this.capacity) {
+        if(item.getWeight() + this.getCurrentWeight() <= this.capacity) {
             this.items.add(item);
         }
     }

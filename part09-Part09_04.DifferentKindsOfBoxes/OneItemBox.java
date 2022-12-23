@@ -10,14 +10,6 @@ public class OneItemBox extends Box {
 
     @Override
     public boolean isInBox(Item item) {
-        if(this.item == null) {
-            return false;
-        }
-
-        if(this.item.equals(item)) {
-            return true;
-        }
-
-        return false;
+        return !(this.item == null) && this.item.equals(item);
     }
 }
