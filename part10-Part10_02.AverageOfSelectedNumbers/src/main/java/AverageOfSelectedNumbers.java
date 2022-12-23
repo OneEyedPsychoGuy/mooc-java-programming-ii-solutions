@@ -3,37 +3,36 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AverageOfSelectedNumbers {
-
     public static void main(String[] args) {
         List<String> inputs = new ArrayList<>();
-        Scanner keyboard = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         
         while(true) {
-            String input = keyboard.nextLine();
+            String input = scanner.nextLine();
             if(input.equals("end")) break;
-
             inputs.add(input);
         }
 
         System.out.println("Print the average of the negative numbers or the positive numbers? (n/p)");
-        String answer = keyboard.nextLine();
+        String answer = scanner.nextLine();
+        scanner.close();
 
         if(answer.equals("n")) {
-            double negativeAverage = inputs.stream()
-                .mapToInt(input -> Integer.valueOf(input))
+            double negAvg = inputs.stream()
+                .mapToInt(i -> Integer.valueOf(i))
                 .filter(num -> num < 0)
                 .average()
                 .getAsDouble();
-            System.out.println("Average of the negative numbers: " + negativeAverage);
+            
+            System.out.println("Average of the negative numbers: " + negAvg);
         } else {
-            double positiveAverage = inputs.stream()
-                .mapToInt(input -> Integer.valueOf(input))
+            double posAvg = inputs.stream()
+                .mapToInt(i -> Integer.valueOf(i))
                 .filter(num -> num > 0)
                 .average()
                 .getAsDouble();
-            System.out.println("Average of the positive numbers: " + positiveAverage);
+            
+            System.out.println("Average of the positive numbers: " + posAvg);
         }
-
-        keyboard.close();
     }
 }
