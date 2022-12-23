@@ -1,24 +1,23 @@
 public class Warehouse {
-
     private double capacity;
     private double balance;
 
     public Warehouse(double capacity) {
-        if (capacity > 0.0) {
+        if(capacity > 0) {
             this.capacity = capacity;
         } else {
-            this.capacity = 0.0;
+            this.capacity = 0;
         }
 
-        this.balance = 0.0;
-    }
-
-    public double getBalance() {
-        return this.balance;
+        this.balance = 0;
     }
 
     public double getCapacity() {
         return this.capacity;
+    }
+
+    public double getBalance() {
+        return this.balance;
     }
 
     public double howMuchSpaceLeft() {
@@ -26,29 +25,25 @@ public class Warehouse {
     }
 
     public void addToWarehouse(double amount) {
-        if (amount < 0) {
-            return;
-        }
+        if(amount < 0) return;
 
-        if (amount <= howMuchSpaceLeft()) {
-            this.balance = this.balance + amount;
+        if(amount <= howMuchSpaceLeft()) {
+            this.balance += amount;
         } else {
             this.balance = this.capacity;
         }
     }
 
     public double takeFromWarehouse(double amount) {
-        if (amount < 0) {
-            return 0.0;
-        }
+        if(amount < 0) return 0;
         
-        if (amount > this.balance) {
-            double allThatWeCan = this.balance;
+        if(amount > this.balance) {
+            double remaining = this.balance;
             this.balance = 0.0;
-            return allThatWeCan;
+            return remaining;
         }
 
-        this.balance = this.balance - amount;
+        this.balance -= amount;
         return amount;
     }
 
