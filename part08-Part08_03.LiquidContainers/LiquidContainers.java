@@ -10,17 +10,13 @@ public class LiquidContainers {
             System.out.println("Second: " + second + "/100");
 
             String input = scanner.nextLine();
-            if(input.equals("quit")) {
-                break;
-            }
+            if(input.equals("quit")) break;
 
             String[] parts = input.split(" ");
             String command = parts[0];
             int amount = Integer.valueOf(parts[1]);
 
-            if(amount <= 0) {
-                continue;
-            }
+            if(amount <= 0) continue;
 
             switch(command) {
                 case "add":
