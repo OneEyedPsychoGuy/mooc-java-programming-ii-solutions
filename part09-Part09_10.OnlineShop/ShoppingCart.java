@@ -28,6 +28,8 @@ public class ShoppingCart {
     }
 
     public void print() {
-        this.items.forEach(System.out::println);
+        for(Item item : this.items) {
+            System.out.println(item);
+        }
     }
 }
