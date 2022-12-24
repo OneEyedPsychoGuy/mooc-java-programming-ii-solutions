@@ -12,72 +12,73 @@ public class MagicSquare {
     }
 
     public ArrayList<Integer> sumsOfRows() {
-        ArrayList<Integer> sumsOfRows = new ArrayList<>();
+        ArrayList<Integer> sums = new ArrayList<>();
 
         for(int row = 0; row < this.square.length; row++) {
-            int sumOfRow = 0;
+            int sum = 0;
             for(int col = 0; col < this.square[row].length; col++) {
-                sumOfRow += this.square[row][col];
+                sum += this.square[row][col];
             }
-            sumsOfRows.add(sumOfRow);
+            sums.add(sum);
         }
 
-        return sumsOfRows;
+        return sums;
     }
 
     public ArrayList<Integer> sumsOfColumns() {
-        ArrayList<Integer> sumsOfColumns = new ArrayList<>();
+        ArrayList<Integer> sums = new ArrayList<>();
 
         for(int col = 0; col < this.square.length; col++) {
-            int sumOfColumn = 0;
+            int sum = 0;
             for(int row = 0; row < this.square[col].length; row++) {
-                sumOfColumn += this.square[row][col];
+                sum += this.square[row][col];
             }
-            sumsOfColumns.add(sumOfColumn);
+            sums.add(sum);
         }
 
-        return sumsOfColumns;
+        return sums;
     }
 
     public ArrayList<Integer> sumsOfDiagonals() {
-        ArrayList<Integer> sumsOfDiagonals = new ArrayList<>();
-        int sumOfForwardDiagonal = 0;
-        int sumOfBackwareDiagonal = 0;
+        ArrayList<Integer> sums = new ArrayList<>();
 
+        int sum = 0;
         for(int i = 0; i < this.square.length; i++) {
-            sumOfForwardDiagonal += this.square[i][i];
+            sum += this.square[i][i];
         }
-        sumsOfDiagonals.add(sumOfForwardDiagonal);
+        sums.add(sum);
 
+        sum = 0;
         for(int i = 0; i < this.square.length; i++) {
-            sumOfBackwareDiagonal += this.square[i][this.square.length - 1 - i];
+            sum += this.square[i][this.square.length - 1 - i];
         }
-        sumsOfDiagonals.add(sumOfBackwareDiagonal);
+        sums.add(sum);
 
-        return sumsOfDiagonals;
+        return sums;
     }
 
     public boolean isMagicSquare() {
-        return sumsAreSame() && allNumbersDifferent();
+        return this.sumsAreSame() && this.allNumbersDifferent();
     }
 
     public ArrayList<Integer> giveAllNumbers() {
-        ArrayList<Integer> numbers = new ArrayList<>();
-        for (int row = 0; row < square.length; row++) {
-            for (int col = 0; col < square[row].length; col++) {
-                numbers.add(square[row][col]);
+        ArrayList<Integer> nums = new ArrayList<>();
+        
+        for(int row = 0; row < square.length; row++) {
+            for(int col = 0; col < square[row].length; col++) {
+                nums.add(square[row][col]);
             }
         }
 
-        return numbers;
+        return nums;
     }
 
     public boolean allNumbersDifferent() {
-        ArrayList<Integer> numbers = giveAllNumbers();
+        ArrayList<Integer> nums = giveAllNumbers();
 
-        Collections.sort(numbers);
-        for (int i = 1; i < numbers.size(); i++) {
-            if (numbers.get(i - 1) == numbers.get(i)) {
+        Collections.sort(nums);
+        for(int i = 1; i < nums.size(); i++) {
+            if(nums.get(i - 1) == nums.get(i)) {
                 return false;
             }
         }
@@ -91,11 +92,11 @@ public class MagicSquare {
         sums.addAll(sumsOfColumns());
         sums.addAll(sumsOfDiagonals());
 
-        if (sums.size() < 3) {
+        if(sums.size() < 3) {
             return false;
         }
 
-        for (int i = 1; i < sums.size(); i++) {
+        for(int i = 1; i < sums.size(); i++) {
             if (sums.get(i - 1) != sums.get(i)) {
                 return false;
             }
@@ -131,11 +132,11 @@ public class MagicSquare {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (int row = 0; row < square.length; row++) {
-            for (int col = 0; col < square[row].length; col++) {
+
+        for(int row = 0; row < square.length; row++) {
+            for(int col = 0; col < square[row].length; col++) {
                 result.append(square[row][col]).append("\t");
             }
-
             result.append("\n");
         }
 
