@@ -5,18 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BooksFromFile { 
-    public static void main(String[] args) {
-
-    }
-
     public static List<Book> readBooks(String file) {
         try {
             return Files.lines(Paths.get(file))
                 .map(line -> line.split(","))
-                .filter(data -> data.length == 4)
-                .map(data -> new Book(data[0], Integer.valueOf(data[1]), Integer.valueOf(data[2]), data[3]))
+                .filter(parts -> parts.length == 4)
+                .map(parts -> new Book(parts[0], Integer.valueOf(parts[1]), Integer.valueOf(parts[2]), parts[3]))
                 .collect(Collectors.toList());
-        } catch (IOException e) {
+        } catch(IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
