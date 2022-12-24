@@ -3,14 +3,15 @@ package validating;
 public class Calculator {
     public int factorial(int num) {
         if(num < 0) {
-            throw new IllegalArgumentException("Number is negative!");
-        }
-        int answer = 1;
-        for (int i = 1; i <= num; i++) {
-            answer *= i;
+            throw new IllegalArgumentException("Factorial only works for positive numbers!");
         }
 
-        return answer;
+        int fact = 1;
+        for(int i = 1; i <= num; i++) {
+            fact *= i;
+        }
+
+        return fact;
     }
 
     public int binomialCoefficent(int setSize, int subsetSize) {
