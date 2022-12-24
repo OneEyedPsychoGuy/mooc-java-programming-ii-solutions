@@ -5,14 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ReadingFilesPerLine {
-    public static void main(String[] args) {
-
-    }
-
     public static List<String> read(String file) {
         try {
             return Files.lines(Paths.get(file)).collect(Collectors.toList());
-        } catch (IOException e) {
+        } catch(IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
