@@ -3,7 +3,7 @@ public class Card implements Comparable<Card> {
     private Suit suit;
 
     public Card(int value, Suit suit) {
-        if (value < 2 || value > 14) {
+        if(value < 2 || value > 14) {
             throw new IllegalArgumentException("Card value must be in range 2...14.");
         }
 
@@ -12,27 +12,11 @@ public class Card implements Comparable<Card> {
     }
 
     public int getValue() {
-        return value;
+        return this.value;
     }
 
     public Suit getSuit() {
-        return suit;
-    }
-
-    @Override
-    public String toString() {
-        String cardValue = "" + value;
-        if(value == 11) {
-            cardValue = "J";
-        } else if (value == 12) {
-            cardValue = "Q";
-        } else if (value == 13) {
-            cardValue = "K";
-        } else if (value == 14) {
-            cardValue = "A";
-        }
-        
-        return suit + " " + cardValue;
+        return this.suit;
     }
 
     @Override
@@ -41,5 +25,27 @@ public class Card implements Comparable<Card> {
             return this.suit.ordinal() - card.suit.ordinal();
         }
         return this.value - card.value;
+    }
+
+    @Override
+    public String toString() {
+        String card = "" + this.value;
+        
+        switch(this.value) {
+            case 11:
+                card = "J";
+                break;
+            case 12:
+                card = "Q";
+                break;
+            case 13:
+                card = "K";
+                break;
+            case 14:
+                card = "A";
+                break;
+        }
+        
+        return this.suit + " " + card;
     }
 }

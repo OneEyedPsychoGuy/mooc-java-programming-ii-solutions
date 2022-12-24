@@ -2,10 +2,9 @@ import java.util.Comparator;
 
 public class BySuitInValueOrder implements Comparator<Card> {
     public int compare(Card c1, Card c2) {
-        int compareSuit = c1.getSuit().ordinal() - c2.getSuit().ordinal();
-        if(compareSuit == 0) {
+        if(c1.getSuit() == c2.getSuit()) {
             return c1.getValue() - c2.getValue();
         }
-        return compareSuit;
+        return c1.getSuit().compareTo(c2.getSuit());
     }
 }
