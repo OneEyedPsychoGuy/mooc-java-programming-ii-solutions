@@ -3,12 +3,12 @@ package FlightControl.domain;
 public class Flight {
     private Airplane plane;
     private Place departure;
-    private Place arrival;
+    private Place destination;
 
-    public Flight(Airplane plane, Place departure, Place arrival) {
+    public Flight(Airplane plane, Place departure, Place destination) {
         this.plane = plane;
         this.departure = departure;
-        this.arrival = arrival;
+        this.destination = destination;
     }
 
     public Airplane getAirplane() {
@@ -19,12 +19,12 @@ public class Flight {
         return this.departure;
     }
 
-    public Place getArrival() {
-        return this.arrival;
+    public Place getDestination() {
+        return this.destination;
     }
 
     @Override
     public String toString() {
-        return this.plane + " (" + this.departure + "-" + this.arrival + ")";
+        return this.plane + " (" + this.departure + "-" + this.destination + ")";
     }
 }

@@ -1,11 +1,12 @@
 package FlightControl.logic;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.HashMap;
 import FlightControl.domain.Flight;
 import FlightControl.domain.Airplane;
 import FlightControl.domain.Place;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.HashMap;
 
 public class FlightControl {
     private Map<String, Flight> flights;
@@ -38,11 +39,11 @@ public class FlightControl {
         this.planes.put(id, new Airplane(id, capacity));
     }
 
-    public void addFlight(Airplane plane, String departure, String arrival) {
+    public void addFlight(Airplane plane, String departure, String destination) {
         this.places.putIfAbsent(departure, new Place(departure));
-        this.places.putIfAbsent(arrival, new Place(arrival));
+        this.places.putIfAbsent(destination, new Place(destination));
 
-        Flight flight = new Flight(plane, this.places.get(departure), this.places.get(arrival));
+        Flight flight = new Flight(plane, this.places.get(departure), this.places.get(destination));
         this.flights.put(flight.toString(), flight);
     }
 }
