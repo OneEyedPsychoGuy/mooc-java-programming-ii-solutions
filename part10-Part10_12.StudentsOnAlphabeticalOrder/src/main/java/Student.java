@@ -6,12 +6,12 @@ public class Student implements Comparable<Student> {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     @Override
     public String toString() {
-        return name;
+        return this.name;
     }
 
     @Override
