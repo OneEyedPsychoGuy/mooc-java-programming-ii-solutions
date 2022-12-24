@@ -16,11 +16,6 @@ public class Literacy implements Comparable<Literacy> {
     }
 
     @Override
-    public String toString() {
-        return this.country + " (" + this.year + "), " + this.gender + ", " + this.literacyPercent;
-    }
-
-    @Override
     public int compareTo(Literacy literacy) {
         if(this.literacyPercent < literacy.literacyPercent) {
             return -1;
@@ -29,5 +24,10 @@ public class Literacy implements Comparable<Literacy> {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return this.country + " (" + this.year + "), " + this.gender + ", " + this.literacyPercent;
     }
 }
