@@ -8,20 +8,20 @@ public class Human implements Comparable<Human> {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getWage() {
-        return wage;
-    }
-
-    @Override
-    public String toString() {
-        return name + " " + wage;
+        return this.wage;
     }
 
     @Override
     public int compareTo(Human human) {
         return human.wage - this.wage;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " " + this.wage;
     }
 }
