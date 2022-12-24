@@ -27,7 +27,7 @@ public class TemperatureSensor implements Sensor {
     @Override
     public int read() {
         if(!this.isOn()) {
-            throw new IllegalStateException("Cannot perform read() method when sensor is off!");
+            throw new IllegalStateException();
         }
 
         return new Random().nextInt(61) - 30;

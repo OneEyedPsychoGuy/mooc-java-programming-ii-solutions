@@ -20,10 +20,6 @@ public class StandardSensor implements Sensor {
 
     @Override
     public int read() {
-        if(!this.isOn()) {
-            throw new IllegalStateException("Cannot perform read() method when sensor is off!");
-        }
-
         return this.reading;
     }
 }
