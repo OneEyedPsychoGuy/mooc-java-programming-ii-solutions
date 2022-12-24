@@ -18,16 +18,16 @@ public class Employees {
     }
 
     public void print() {
-        Iterator<Person> employeeIterator = this.employees.iterator();
-        while(employeeIterator.hasNext()) {
-            System.out.println(employeeIterator.next());
+        Iterator<Person> iter = this.employees.iterator();
+        while(iter.hasNext()) {
+            System.out.println(iter.next());
         }
     }
 
     public void print(Education education) {
-        Iterator<Person> employeeIterator = this.employees.iterator();
-        while(employeeIterator.hasNext()) {
-            Person employee = employeeIterator.next();
+        Iterator<Person> iter = this.employees.iterator();
+        while(iter.hasNext()) {
+            Person employee = iter.next();
             if(employee.getEducation() == education) {
                 System.out.println(employee);
             }
@@ -35,10 +35,10 @@ public class Employees {
     }
 
     public void fire(Education education) {
-        Iterator<Person> employeeIterator = this.employees.iterator();
-        while(employeeIterator.hasNext()) {
-            if(employeeIterator.next().getEducation() == education) {
-                employeeIterator.remove();
+        Iterator<Person> iter = this.employees.iterator();
+        while(iter.hasNext()) {
+            if(iter.next().getEducation() == education) {
+                iter.remove();
             }
         }
     }
