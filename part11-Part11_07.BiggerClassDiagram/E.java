@@ -1,5 +1,5 @@
 import java.util.Collection;
 
 public class E {
-    private Collection<C> cs;
+    private Collection<C> cCollection;
 }
