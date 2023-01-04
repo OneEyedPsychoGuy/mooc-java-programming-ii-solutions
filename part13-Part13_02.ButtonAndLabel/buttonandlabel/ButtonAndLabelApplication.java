@@ -18,8 +18,7 @@ public class ButtonAndLabelApplication extends Application {
         Button button = new Button("Button");
 
         FlowPane pane = new FlowPane();
-        pane.getChildren().add(label);
-        pane.getChildren().add(button);
+        pane.getChildren().addAll(label, button);
 
         window.setScene(new Scene(pane));
         window.show();
