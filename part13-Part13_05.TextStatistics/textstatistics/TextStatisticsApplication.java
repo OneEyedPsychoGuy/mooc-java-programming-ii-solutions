@@ -10,21 +10,21 @@ import javafx.stage.Stage;
 
 public class TextStatisticsApplication extends Application {
     public static void main(String[] args) {
-        launch(TextStatisticsApplication.class);
+        Application.launch(TextStatisticsApplication.class);
     }
 
     @Override
     public void start(Stage window) {
         BorderPane pane = new BorderPane();
 
-        HBox statistics = new HBox();
-        statistics.setSpacing(10);
-        statistics.getChildren().add(new Label("Letters: 0"));
-        statistics.getChildren().add(new Label("Words: 0"));
-        statistics.getChildren().add(new Label("The longest word is:"));
+        HBox stats = new HBox();
+        stats.setSpacing(10);
+        stats.getChildren().add(new Label("Letters: 0"));
+        stats.getChildren().add(new Label("Words: 0"));
+        stats.getChildren().add(new Label("The longest word is:"));
 
         pane.setCenter(new TextArea());
-        pane.setBottom(statistics);
+        pane.setBottom(stats);
 
         window.setScene(new Scene(pane));
         window.show();
