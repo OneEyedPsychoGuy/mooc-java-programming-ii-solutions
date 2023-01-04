@@ -1,8 +1,6 @@
 package application;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.geometry.Insets;
@@ -15,7 +13,7 @@ import javafx.scene.layout.StackPane;
 
 public class JokeApplication extends Application {
     public static void main(String[] args) {
-        launch(JokeApplication.class);
+        Application.launch(JokeApplication.class);
     }
 
     private StackPane createView(String text) {
@@ -30,7 +28,7 @@ public class JokeApplication extends Application {
 
     @Override
     public void start(Stage window) {        
-        final BorderPane layout = new BorderPane();
+        BorderPane layout = new BorderPane();
 
         HBox menu = new HBox();
         menu.setPadding(new Insets(20, 20, 20, 20));
@@ -43,36 +41,17 @@ public class JokeApplication extends Application {
         menu.getChildren().addAll(jokeButton, answerButton, explanationButton);
         layout.setTop(menu);
 
-        final StackPane firstView = createView("What do you call a bear with no teeth?");
-        final StackPane secondView = createView("A gummy bear.");
-        final StackPane thirdView = createView("Because bears with no teeth only have gums!");
+        StackPane joke = createView("What do you call a bear with no teeth?");
+        StackPane answer = createView("A gummy bear.");
+        StackPane explanation = createView("Because bears with no teeth only have gums!");
 
-        jokeButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                layout.setCenter(firstView);
-            }
-        });
+        jokeButton.setOnAction(event -> layout.setCenter(joke));
+        answerButton.setOnAction(event -> layout.setCenter(answer));
+        explanationButton.setOnAction(event -> layout.setCenter(explanation));
 
-        answerButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                layout.setCenter(secondView);
-            }
-        });
+        layout.setCenter(joke);
 
-        explanationButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                layout.setCenter(thirdView);
-            }
-        });
-
-        layout.setCenter(firstView);
-
-        Scene scene = new Scene(layout);
-
-        window.setScene(scene);
+        window.setScene(new Scene(layout));
         window.show();
     }
 }
