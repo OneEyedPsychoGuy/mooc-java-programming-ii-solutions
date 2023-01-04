@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class BorderPaneApplication extends Application {
     public static void main(String[] args) {
-        launch(BorderPaneApplication.class);
+        Application.launch(BorderPaneApplication.class);
     }
 
     @Override
