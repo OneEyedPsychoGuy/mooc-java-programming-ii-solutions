@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 public class MyFirstApplication extends Application {
     public static void main(String[] args) {
-        launch(MyFirstApplication.class);
+        Application.launch(MyFirstApplication.class);
     }
 
     @Override
