@@ -12,24 +12,19 @@ import javafx.scene.control.Label;
 
 public class NotifierApplication extends Application {
     public static void main(String[] args) {
-        launch(NotifierApplication.class);
+        Application.launch(NotifierApplication.class);
     }
 
     @Override
     public void start(Stage window) {
-        final TextField textField = new TextField();
-        final Label label = new Label();
+        TextField text = new TextField();
+        Label label = new Label();
         Button button = new Button("Update");
 
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                label.setText(textField.getText());
-            }
-        });
+        button.setOnAction(event -> label.setText(text.getText()));
 
         VBox notifier = new VBox();
-        notifier.getChildren().addAll(textField, button, label);
+        notifier.getChildren().addAll(text, button, label);
 
         window.setScene(new Scene(notifier));
         window.show();
