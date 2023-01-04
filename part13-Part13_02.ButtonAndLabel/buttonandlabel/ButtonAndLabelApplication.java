@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class ButtonAndLabelApplication extends Application {
     public static void main(String[] args) {
-        launch(ButtonAndLabelApplication.class);
+        Application.launch(ButtonAndLabelApplication.class);
     }
 
     @Override
