@@ -18,8 +18,7 @@ public class ButtonAndTextFieldApplication extends Application {
         TextField text = new TextField();
 
         FlowPane pane = new FlowPane();
-        pane.getChildren().add(button);
-        pane.getChildren().add(text);
+        pane.getChildren().addAll(button, text);
 
         window.setScene(new Scene(pane));
         window.show();
