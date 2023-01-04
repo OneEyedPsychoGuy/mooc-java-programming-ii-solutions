@@ -16,7 +16,7 @@ public class TicTacToeBoard {
         this.board[row][col] = letter;
     }
 
-    public boolean isEndGame() {
+    public boolean isEnded() {
         return this.isFull() || this.checkRows() || this.checkColumns() || this.checkDiagonals();
     }
 
