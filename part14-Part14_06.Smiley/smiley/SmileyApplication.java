@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class SmileyApplication extends Application {
     public static void main(String[] args) {
-        launch(SmileyApplication.class);
+        Application.launch(SmileyApplication.class);
     }
 
     private void drawSmiley(GraphicsContext painter) {
@@ -29,19 +29,16 @@ public class SmileyApplication extends Application {
     @Override
     public void start(Stage window) {
         Canvas canvas = new Canvas(640, 480);
-        final GraphicsContext painter = canvas.getGraphicsContext2D();
-        final ColorPicker palette = new ColorPicker();
+        GraphicsContext painter = canvas.getGraphicsContext2D();
+        ColorPicker palette = new ColorPicker();
 
         BorderPane layout = new BorderPane();
         layout.setCenter(canvas);
         layout.setRight(palette);
 
-        canvas.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                painter.setFill(palette.getValue());
-                painter.fillOval(event.getX(), event.getY(), 4, 4);
-            }
+        canvas.setOnMouseDragged(event -> {
+            painter.setFill(palette.getValue());
+            painter.fillOval(event.getX(), event.getY(), 4, 4);
         });
 
         this.drawSmiley(painter);
