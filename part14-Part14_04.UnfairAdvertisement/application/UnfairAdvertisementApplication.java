@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class UnfairAdvertisementApplication extends Application {
     public static void main(String[] args) {
-        launch(UnfairAdvertisementApplication.class);
+        Application.launch(UnfairAdvertisementApplication.class);
     }
 
     @Override
