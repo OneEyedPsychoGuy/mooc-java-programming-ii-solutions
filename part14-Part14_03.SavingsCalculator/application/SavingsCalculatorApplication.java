@@ -24,8 +24,8 @@ public class SavingsCalculatorApplication extends Application {
         double interest = 0.0;
 
         for(int year = 0; year <= 30; year++) {
-            monthlySavingsSeries.getData().add(new XYChart.Data<Number, Number>(year, savings));
-            yearlyInterestSeries.getData().add(new XYChart.Data<Number, Number>(year, interest));
+            monthlySavingsSeries.getData().add(new XYChart.Data<>(year, savings));
+            yearlyInterestSeries.getData().add(new XYChart.Data<>(year, interest));
 
             savings += monthlySavings * 12;
             interest = (interest + monthlySavings * 12) * (1.0 + interestRate / 100.0);
@@ -40,13 +40,13 @@ public class SavingsCalculatorApplication extends Application {
         xAxis.setLabel("Years");
         yAxis.setLabel("Amount ($)");
 
-        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setTitle("Savings Calculator");
         lineChart.setAnimated(false);
         lineChart.setLegendVisible(false);
 
-        XYChart.Series<Number, Number> monthlySavingsSeries = new XYChart.Series<Number, Number>();
-        XYChart.Series<Number, Number> yearlyInterestSeries = new XYChart.Series<Number, Number>();
+        XYChart.Series<Number, Number> monthlySavingsSeries = new XYChart.Series<>();
+        XYChart.Series<Number, Number> yearlyInterestSeries = new XYChart.Series<>();
         lineChart.getData().add(monthlySavingsSeries);
         lineChart.getData().add(yearlyInterestSeries);
 
