@@ -36,9 +36,9 @@ public class MultipleViews extends Application {
         thirdViewGrid.add(thirdViewButton, 1, 1);
         Scene thirdScene = new Scene(thirdViewGrid);
 
-        firstViewButton.setOnAction(handle -> window.setScene(secondScene));
-        secondViewButton.setOnAction(handle -> window.setScene(thirdScene));
-        thirdViewButton.setOnAction(handle -> window.setScene(firstScene));
+        firstViewButton.setOnAction(event -> window.setScene(secondScene));
+        secondViewButton.setOnAction(event -> window.setScene(thirdScene));
+        thirdViewButton.setOnAction(event -> window.setScene(firstScene));
 
         window.setScene(firstScene);
         window.show();
