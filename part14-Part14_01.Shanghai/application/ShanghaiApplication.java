@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class ShanghaiApplication extends Application {
     public static void main(String[] args) {
-        launch(ShanghaiApplication.class);
+        Application.launch(ShanghaiApplication.class);
     }
 
     @Override
