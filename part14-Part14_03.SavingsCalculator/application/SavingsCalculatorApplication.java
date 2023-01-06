@@ -1,8 +1,6 @@
 package application;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -15,7 +13,7 @@ import javafx.scene.layout.VBox;
 
 public class SavingsCalculatorApplication extends Application {
     public static void main(String[] args) {
-        launch(SavingsCalculatorApplication.class);
+        Application.launch(SavingsCalculatorApplication.class);
     }
 
     private void updateSavings(double monthlySavings, double interestRate,  XYChart.Series<Number, Number> monthlySavingsSeries, XYChart.Series<Number, Number> yearlyInterestSeries) {
@@ -25,7 +23,7 @@ public class SavingsCalculatorApplication extends Application {
         double savings = 0.0;
         double interest = 0.0;
 
-        for (int year = 0; year <= 30; year++) {
+        for(int year = 0; year <= 30; year++) {
             monthlySavingsSeries.getData().add(new XYChart.Data<Number, Number>(year, savings));
             yearlyInterestSeries.getData().add(new XYChart.Data<Number, Number>(year, interest));
 
@@ -42,46 +40,38 @@ public class SavingsCalculatorApplication extends Application {
         xAxis.setLabel("Years");
         yAxis.setLabel("Amount ($)");
 
-        final LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
         lineChart.setTitle("Savings Calculator");
         lineChart.setAnimated(false);
         lineChart.setLegendVisible(false);
 
-        final XYChart.Series<Number, Number> monthlySavingsSeries = new XYChart.Series<Number, Number>();
-        final XYChart.Series<Number, Number> yearlyInterestSeries = new XYChart.Series<Number, Number>();
+        XYChart.Series<Number, Number> monthlySavingsSeries = new XYChart.Series<Number, Number>();
+        XYChart.Series<Number, Number> yearlyInterestSeries = new XYChart.Series<Number, Number>();
         lineChart.getData().add(monthlySavingsSeries);
         lineChart.getData().add(yearlyInterestSeries);
 
         Label monthlySavingsLabel = new Label("Monthly savings");
-        final Slider monthlySavingsSlider = new Slider(25, 250, 125);
-        final Label monthlySavingsValue = new Label(monthlySavingsSlider.getValue() + "");
+        Slider monthlySavingsSlider = new Slider(25, 250, 125);
+        Label monthlySavingsValue = new Label(monthlySavingsSlider.getValue() + "");
 
         monthlySavingsSlider.setShowTickLabels(true);
         monthlySavingsSlider.setShowTickMarks(true);
         
         Label yearlyInterestRateLabel = new Label("Yearly interest rate");
-        final Slider yearlyInterestRateSlider = new Slider(0, 10, 5);
-        final Label yearlyInterestRateValue = new Label(yearlyInterestRateSlider.getValue() + "");
+        Slider yearlyInterestRateSlider = new Slider(0, 10, 5);
+        Label yearlyInterestRateValue = new Label(yearlyInterestRateSlider.getValue() + "");
 
         yearlyInterestRateSlider.setShowTickLabels(true);
         yearlyInterestRateSlider.setShowTickMarks(true);
 
-        monthlySavingsSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue <? extends Number> observable, Number oldValue, Number newValue)
-            {
-                monthlySavingsValue.setText(String.format("%.2f", newValue));
-                updateSavings(monthlySavingsSlider.getValue(), yearlyInterestRateSlider.getValue(), monthlySavingsSeries, yearlyInterestSeries);
-            }
+        monthlySavingsSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            monthlySavingsValue.setText(String.format("%.2f", newValue));
+            this.updateSavings(monthlySavingsSlider.getValue(), yearlyInterestRateSlider.getValue(), monthlySavingsSeries, yearlyInterestSeries);
         });
 
-        yearlyInterestRateSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue <? extends Number> observable, Number oldValue, Number newValue)
-            {
-                yearlyInterestRateValue.setText(String.format("%.2f", newValue));
-                updateSavings(monthlySavingsSlider.getValue(), yearlyInterestRateSlider.getValue(), monthlySavingsSeries, yearlyInterestSeries);
-            }
+        yearlyInterestRateSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            yearlyInterestRateValue.setText(String.format("%.2f", newValue));
+            updateSavings(monthlySavingsSlider.getValue(), yearlyInterestRateSlider.getValue(), monthlySavingsSeries, yearlyInterestSeries);
         });
 
         BorderPane monthlySavingsLayout = new BorderPane();
