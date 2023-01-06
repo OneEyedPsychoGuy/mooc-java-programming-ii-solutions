@@ -71,7 +71,7 @@ public class SavingsCalculatorApplication extends Application {
 
         yearlyInterestRateSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             yearlyInterestRateValue.setText(String.format("%.2f", newValue));
-            updateSavings(monthlySavingsSlider.getValue(), yearlyInterestRateSlider.getValue(), monthlySavingsSeries, yearlyInterestSeries);
+            this.updateSavings(monthlySavingsSlider.getValue(), yearlyInterestRateSlider.getValue(), monthlySavingsSeries, yearlyInterestSeries);
         });
 
         BorderPane monthlySavingsLayout = new BorderPane();
