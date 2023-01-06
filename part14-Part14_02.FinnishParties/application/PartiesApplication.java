@@ -17,36 +17,33 @@ import javafx.stage.Stage;
 
 public class PartiesApplication extends Application {
     public static void main(String[] args) {
-        launch(PartiesApplication.class);
+        Application.launch(PartiesApplication.class);
     }
 
     private Map<String, Map<Integer, Double>> readData() {
-        Map<String, Map<Integer, Double>> data = new HashMap<String, Map<Integer, Double>>();
+        Map<String, Map<Integer, Double>> values = new HashMap<String, Map<Integer, Double>>();
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(new File("partiesdata.tsv")));           
-            String[] years = br.readLine().split("\t");
-
+        try(BufferedReader fileReader = new BufferedReader(new FileReader(new File("partiesdata.tsv")))) {           
+            String[] years = fileReader.readLine().split("\t");
             String partyRow;
-            while((partyRow = br.readLine()) != null) {
+
+            while((partyRow = fileReader.readLine()) != null) {
                 Map<Integer, Double> yearData = new HashMap<Integer, Double>();
                 String[] partyRowArray = partyRow.split("\t");
 
                 for(int i = 1; i < partyRowArray.length; i++) {
-                    if(partyRowArray[i].equals("-")) {
-                        continue;
+                    if(!partyRowArray[i].equals("-")) {
+                        yearData.put(Integer.valueOf(years[i]), Double.valueOf(partyRowArray[i]));
                     }
-
-                    yearData.put(Integer.valueOf(years[i]), Double.valueOf(partyRowArray[i]));
                 }
 
-                data.put(partyRowArray[0], yearData);
+                values.put(partyRowArray[0], yearData);
             }
         } catch(IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
-        return data;
+        return values;
     }
 
     @Override
@@ -57,26 +54,21 @@ public class PartiesApplication extends Application {
         xAxis.setLabel("Year");
         yAxis.setLabel("Relative support (%)");
 
-        final LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
         lineChart.setTitle("Relative support of the parties");
 
-        final Map<String, Map<Integer, Double>> values = this.readData();
+        Map<String, Map<Integer, Double>> values = this.readData();
 
-        values.keySet().stream().forEach(new Consumer<String>() {
-            @Override
-            public void accept(String party) {
-                final XYChart.Series<Number, Number> data = new XYChart.Series<Number, Number>();
+        values.keySet().stream().forEach(party -> {
+                XYChart.Series<Number, Number> data = new XYChart.Series<Number, Number>();
                 data.setName(party);
 
-                values.get(party).entrySet().stream().forEach(new Consumer<Map.Entry<Integer, Double>>() {
-                    @Override
-                    public void accept(Map.Entry<Integer, Double> pair) {
-                        data.getData().add(new XYChart.Data<Number, Number>(pair.getKey(), pair.getValue()));
-                    }
-                });
+                values.get(party)
+                    .entrySet()
+                    .stream()
+                    .forEach(pair -> data.getData().add(new XYChart.Data<Number, Number>(pair.getKey(), pair.getValue())));
 
                 lineChart.getData().add(data);
-            }
         });
 
         window.setScene(new Scene(lineChart, 640, 480));
