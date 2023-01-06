@@ -8,7 +8,7 @@ public class Dictionary {
     private Map<String, String> translations;
 
     public Dictionary() {
-        this.translations = new HashMap<String, String>();
+        this.translations = new HashMap<>();
         this.add("sana", "word");
     }
 
