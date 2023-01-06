@@ -20,21 +20,21 @@ public class ShanghaiApplication extends Application {
         xAxis.setLabel("Year");
         yAxis.setLabel("Ranking");
 
-        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setTitle("University of Helsinki, Shanghai ranking");
 
-        XYChart.Series<Number, Number> data = new XYChart.Series<Number, Number>();
-        data.getData().add(new XYChart.Data<Number, Number>(2007, 73));
-        data.getData().add(new XYChart.Data<Number, Number>(2008, 68));
-        data.getData().add(new XYChart.Data<Number, Number>(2009, 72));
-        data.getData().add(new XYChart.Data<Number, Number>(2010, 72));
-        data.getData().add(new XYChart.Data<Number, Number>(2011, 74));
-        data.getData().add(new XYChart.Data<Number, Number>(2012, 73));
-        data.getData().add(new XYChart.Data<Number, Number>(2013, 76));
-        data.getData().add(new XYChart.Data<Number, Number>(2014, 73));
-        data.getData().add(new XYChart.Data<Number, Number>(2015, 67));
-        data.getData().add(new XYChart.Data<Number, Number>(2016, 56));
-        data.getData().add(new XYChart.Data<Number, Number>(2017, 56));
+        XYChart.Series<Number, Number> data = new XYChart.Series<>();
+        data.getData().add(new XYChart.Data<>(2007, 73));
+        data.getData().add(new XYChart.Data<>(2008, 68));
+        data.getData().add(new XYChart.Data<>(2009, 72));
+        data.getData().add(new XYChart.Data<>(2010, 72));
+        data.getData().add(new XYChart.Data<>(2011, 74));
+        data.getData().add(new XYChart.Data<>(2012, 73));
+        data.getData().add(new XYChart.Data<>(2013, 76));
+        data.getData().add(new XYChart.Data<>(2014, 73));
+        data.getData().add(new XYChart.Data<>(2015, 67));
+        data.getData().add(new XYChart.Data<>(2016, 56));
+        data.getData().add(new XYChart.Data<>(2017, 56));
 
         lineChart.getData().add(data);
 
