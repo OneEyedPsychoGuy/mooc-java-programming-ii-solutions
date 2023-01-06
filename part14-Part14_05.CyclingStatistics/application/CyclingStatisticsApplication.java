@@ -21,12 +21,12 @@ import javafx.stage.Stage;
 
 public class CyclingStatisticsApplication extends Application {
     public static void main(String[] args) {
-        launch(CyclingStatisticsApplication.class);
+        Application.launch(CyclingStatisticsApplication.class);
     }
 
     @Override
     public void start(Stage stage) {
-        final CyclingStatistics statistics = new CyclingStatistics("helsinki-cycling-statistics.csv");
+        CyclingStatistics stats = new CyclingStatistics("helsinki-cycling-statistics.csv");
 
         GridPane gridPane = new GridPane();
         gridPane.setVgap(10);
@@ -36,9 +36,9 @@ public class CyclingStatisticsApplication extends Application {
         gridPane.add(new Label("Choose the examined location"), 0, 0);
 
         ObservableList<String> data = FXCollections.observableArrayList();
-        data.addAll(statistics.locations());
+        data.addAll(stats.locations());
 
-        final ListView<String> list = new ListView<String>(data);
+        ListView<String> list = new ListView<>(data);
         gridPane.add(list, 0, 1);
 
         CategoryAxis xAxis = new CategoryAxis();
@@ -46,26 +46,17 @@ public class CyclingStatisticsApplication extends Application {
         xAxis.setLabel("Year / Month");
         yAxis.setLabel("Cyclists");
 
-        final BarChart<String, Number> chart = new BarChart<String, Number>(xAxis, yAxis);
+        BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
         chart.setLegendVisible(false);
 
-        list.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                String chosen = list.getSelectionModel().getSelectedItem();
-                final Map<String, Integer> values = statistics.monthlyCyclists(chosen);
-                chart.getData().clear();
-                final XYChart.Series<String, Number> chartData = new XYChart.Series<String, Number>();
+        list.setOnMouseClicked(event -> {
+            String chosen = list.getSelectionModel().getSelectedItem();
+            Map<String, Integer> values = stats.monthlyCyclists(chosen);
+            chart.getData().clear();
 
-                values.keySet().stream().forEach(new Consumer<String>() {
-                    @Override
-                    public void accept(String time) {
-                        chartData.getData().add(new XYChart.Data<String, Number>(time, values.get(time)));
-                    }
-                });
-
-                chart.getData().add(chartData);
-            }
+            XYChart.Series<String, Number> chartData = new XYChart.Series<>();
+            values.keySet().stream().forEach(time -> chartData.getData().add(new XYChart.Data<>(time, values.get(time))));
+            chart.getData().add(chartData);
         });
 
         gridPane.add(chart, 1, 0, 1, 2);
