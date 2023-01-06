@@ -21,14 +21,14 @@ public class PartiesApplication extends Application {
     }
 
     private Map<String, Map<Integer, Double>> readData() {
-        Map<String, Map<Integer, Double>> values = new HashMap<String, Map<Integer, Double>>();
+        Map<String, Map<Integer, Double>> values = new HashMap<>();
 
         try(BufferedReader fileReader = new BufferedReader(new FileReader(new File("partiesdata.tsv")))) {           
             String[] years = fileReader.readLine().split("\t");
             String partyRow;
 
             while((partyRow = fileReader.readLine()) != null) {
-                Map<Integer, Double> yearData = new HashMap<Integer, Double>();
+                Map<Integer, Double> yearData = new HashMap<>();
                 String[] partyRowArray = partyRow.split("\t");
 
                 for(int i = 1; i < partyRowArray.length; i++) {
@@ -54,19 +54,19 @@ public class PartiesApplication extends Application {
         xAxis.setLabel("Year");
         yAxis.setLabel("Relative support (%)");
 
-        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setTitle("Relative support of the parties");
 
         Map<String, Map<Integer, Double>> values = this.readData();
 
         values.keySet().stream().forEach(party -> {
-                XYChart.Series<Number, Number> data = new XYChart.Series<Number, Number>();
+                XYChart.Series<Number, Number> data = new XYChart.Series<>();
                 data.setName(party);
 
                 values.get(party)
                     .entrySet()
                     .stream()
-                    .forEach(pair -> data.getData().add(new XYChart.Data<Number, Number>(pair.getKey(), pair.getValue())));
+                    .forEach(pair -> data.getData().add(new XYChart.Data<>(pair.getKey(), pair.getValue())));
 
                 lineChart.getData().add(data);
         });
