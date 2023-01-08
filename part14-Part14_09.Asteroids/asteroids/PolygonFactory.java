@@ -5,8 +5,8 @@ import javafx.scene.shape.Polygon;
 
 public class PolygonFactory {
     public Polygon createPolygon() {
-        Random rnd = new Random();
-        double size = 10 + rnd.nextInt(10);
+        Random random = new Random();
+        double size = 10 + random.nextInt(10);
 
         Polygon polygon = new Polygon();
         double c1 = Math.cos(Math.PI * 2 / 5);
@@ -21,8 +21,8 @@ public class PolygonFactory {
             -1 * size * c2, size * s2,
             size * c1, size * s1);
 
-        for (int i = 0; i < polygon.getPoints().size(); i++) {
-            int change = rnd.nextInt(5) - 2;
+        for(int i = 0; i < polygon.getPoints().size(); i++) {
+            int change = random.nextInt(5) - 2;
             polygon.getPoints().set(i, polygon.getPoints().get(i) + change);
         }
 
